@@ -1,5 +1,6 @@
 helm-extra-args: --timeout 600s
 chart-dirs:
-  - charts
+  - charts/collabora-code
 chart-repos:
-  - stable=https://kubernetes-charts.storage.googleapis.com/
+  - stable=https://charts.helm.sh/stable
+target-branch: main
