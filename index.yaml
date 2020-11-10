@@ -17,4 +17,132 @@ entries:
     urls:
     - https://github.com/chrisingenhaag/helm/releases/download/collabora-code-2.0.0/collabora-code-2.0.0.tgz
     version: 2.0.0
-generated: "2020-11-07T18:44:03.277298425Z"
+  - apiVersion: v1
+    appVersion: 4.0.3.1
+    created: "2020-11-10T08:14:28.052729+01:00"
+    description: A Helm chart for Collabora Office - CODE-Edition
+    digest: fecb7949ecfbf7207b023e378d80566b10ffef95e8b138bcc20ac2be63d4d99f
+    home: https://www.collaboraoffice.com/code/
+    icon: https://avatars0.githubusercontent.com/u/22418908?s=200&v=4
+    maintainers:
+    - email: christian.ingenhaag@googlemail.com
+      name: Christian
+    name: collabora-code
+    sources:
+    - https://github.com/CollaboraOnline/Docker-CODE
+    urls:
+    - https://chrisingenhaag.github.io/helm/deprecated-releases/collabora-code-1.0.7.tgz
+    version: 1.0.7
+  - apiVersion: v1
+    appVersion: 4.0.3.1
+    created: "2020-11-10T08:14:28.052095+01:00"
+    description: A Helm chart for Collabora Office - CODE-Edition
+    digest: 23c91ad3538c55d1330ad2463b797d5c9d7e76018fad5e0394e50c2295df6444
+    home: https://www.collaboraoffice.com/code/
+    icon: https://avatars0.githubusercontent.com/u/22418908?s=200&v=4
+    maintainers:
+    - email: christian.ingenhaag@googlemail.com
+      name: Christian
+    name: collabora-code
+    sources:
+    - https://github.com/CollaboraOnline/Docker-CODE
+    urls:
+    - https://chrisingenhaag.github.io/helm/deprecated-releases/collabora-code-1.0.6.tgz
+    version: 1.0.6
+  - apiVersion: v1
+    appVersion: 4.0.3.1
+    created: "2020-11-10T08:14:28.051471+01:00"
+    description: A Helm chart for Collabora Office - CODE-Edition
+    digest: d34fa29eed5dc3edba4cc0bb79b3e075ac24790bdbea18ee4048a845ab1910ab
+    home: https://www.collaboraoffice.com/code/
+    icon: https://avatars0.githubusercontent.com/u/22418908?s=200&v=4
+    maintainers:
+    - email: christian.ingenhaag@googlemail.com
+      name: Christian
+    name: collabora-code
+    sources:
+    - https://github.com/CollaboraOnline/Docker-CODE
+    urls:
+    - https://chrisingenhaag.github.io/helm/deprecated-releases/collabora-code-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v1
+    appVersion: 4.0.3.1
+    created: "2020-11-10T08:14:28.050841+01:00"
+    description: A Helm chart for Collabora Office - CODE-Edition
+    digest: 3f3b71c5f70fd00a937c65536ae0bed508dd5869ab2d8ea06c352dc3bbe4262e
+    home: https://www.collaboraoffice.com/code/
+    icon: https://avatars0.githubusercontent.com/u/22418908?s=200&v=4
+    maintainers:
+    - email: christian.ingenhaag@googlemail.com
+      name: Christian
+    name: collabora-code
+    sources:
+    - https://github.com/CollaboraOnline/Docker-CODE
+    urls:
+    - https://chrisingenhaag.github.io/helm/deprecated-releases/collabora-code-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v1
+    appVersion: 4.0.3.1
+    created: "2020-11-10T08:14:28.050166+01:00"
+    description: A Helm chart for Collabora Office - CODE-Edition
+    digest: 0aa9ece5a62587d150cf2d8816d84b22c235789cfdacfc165753b4529162ca53
+    home: https://www.collaboraoffice.com/code/
+    icon: https://avatars0.githubusercontent.com/u/22418908?s=200&v=4
+    maintainers:
+    - email: christian.ingenhaag@googlemail.com
+      name: Christian
+    name: collabora-code
+    sources:
+    - https://github.com/CollaboraOnline/Docker-CODE
+    urls:
+    - https://chrisingenhaag.github.io/helm/deprecated-releases/collabora-code-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v1
+    appVersion: 4.0.3.1
+    created: "2020-11-10T08:14:28.049396+01:00"
+    description: A Helm chart for Collabora Office - CODE-Edition
+    digest: 3f12ea1b4603fdeca3bac05d9bf9e47090929580ddb175be31fa142f50d49aef
+    home: https://www.collaboraoffice.com/code/
+    icon: https://avatars0.githubusercontent.com/u/22418908?s=200&v=4
+    maintainers:
+    - email: christian.ingenhaag@googlemail.com
+      name: Christian
+    name: collabora-code
+    sources:
+    - https://github.com/CollaboraOnline/Docker-CODE
+    urls:
+    - https://chrisingenhaag.github.io/helm/deprecated-releases/collabora-code-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v1
+    appVersion: 4.0.3.1
+    created: "2020-11-10T08:14:28.047067+01:00"
+    description: A Helm chart for Collabora Office - CODE-Edition
+    digest: c41449075e369672efba6f53777b378c69f73fae27372e699102cac7304f8190
+    home: https://www.collaboraoffice.com/code/
+    icon: https://avatars0.githubusercontent.com/u/22418908?s=200&v=4
+    maintainers:
+    - email: christian.ingenhaag@googlemail.com
+      name: Christian
+    name: collabora-code
+    sources:
+    - https://github.com/CollaboraOnline/Docker-CODE
+    urls:
+    - https://chrisingenhaag.github.io/helm/deprecated-releases/collabora-code-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v1
+    appVersion: 4.0.0.2
+    created: "2020-11-10T08:14:28.045781+01:00"
+    description: A Helm chart for Collabora Office - CODE-Edition
+    digest: 3cd982aaeb0fa59acf38d80bcc3d9139313a17d83b3407c052713837eed5eb1c
+    home: https://www.collaboraoffice.com/code/
+    icon: https://avatars0.githubusercontent.com/u/22418908?s=200&v=4
+    maintainers:
+    - email: christian.ingenhaag@googlemail.com
+      name: Christian
+    name: collabora-code
+    sources:
+    - https://github.com/CollaboraOnline/Docker-CODE
+    urls:
+    - https://chrisingenhaag.github.io/helm/deprecated-releases/collabora-code-1.0.0.tgz
+    version: 1.0.0
+generated: "2020-11-10T08:14:28.043745+01:00"
