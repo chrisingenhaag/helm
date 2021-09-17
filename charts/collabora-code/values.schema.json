@@ -1,0 +1,771 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "replicaCount": 1,
+            "image": {
+                "repository": "collabora/code",
+                "tag": "4.0.3.1",
+                "pullPolicy": "IfNotPresent"
+            },
+            "strategy": "Recreate",
+            "nameOverride": "",
+            "fullnameOverride": "",
+            "service": {
+                "type": "ClusterIP",
+                "port": 9980
+            },
+            "ingress": {
+                "enabled": false,
+                "annotations": {},
+                "paths": [],
+                "hosts": [],
+                "tls": []
+            },
+            "collabora": {
+                "DONT_GEN_SSL_CERT": true,
+                "domain": "nextcloud\\\\.domain",
+                "extra_params": "--o:ssl.termination=true --o:ssl.enable=false",
+                "server_name": "collabora\\.domain",
+                "password": "examplepass",
+                "username": "admin",
+                "dictionaries": "de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru"
+            },
+            "securitycontext": {
+                "allowPrivilegeEscalation": true,
+                "capabilities": {
+                    "add": [
+                        "MKNOD"
+                    ]
+                }
+            },
+            "resources": {},
+            "nodeSelector": {},
+            "tolerations": [],
+            "affinity": {},
+            "livenessProbe": {
+                "enabled": true,
+                "initialDelaySeconds": 30,
+                "timeoutSeconds": 2,
+                "periodSeconds": 10,
+                "successThreshold": 1,
+                "failureThreshold": 3,
+                "scheme": "HTTP",
+                "path": "/"
+            },
+            "readinessProbe": {
+                "enabled": true,
+                "initialDelaySeconds": 30,
+                "timeoutSeconds": 2,
+                "periodSeconds": 10,
+                "successThreshold": 1,
+                "failureThreshold": 3,
+                "scheme": "HTTP",
+                "path": "/"
+            }
+        }
+    ],
+    "required": [
+        "replicaCount",
+        "image",
+        "strategy",
+        "nameOverride",
+        "fullnameOverride",
+        "service",
+        "ingress",
+        "collabora",
+        "securitycontext",
+        "resources",
+        "nodeSelector",
+        "tolerations",
+        "affinity",
+        "livenessProbe",
+        "readinessProbe"
+    ],
+    "properties": {
+        "replicaCount": {
+            "$id": "#/properties/replicaCount",
+            "type": "integer",
+            "title": "The replicaCount schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                1
+            ]
+        },
+        "image": {
+            "$id": "#/properties/image",
+            "type": "object",
+            "title": "The image schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "repository": "collabora/code",
+                    "tag": "4.0.3.1",
+                    "pullPolicy": "IfNotPresent"
+                }
+            ],
+            "required": [
+                "repository",
+                "tag",
+                "pullPolicy"
+            ],
+            "properties": {
+                "repository": {
+                    "$id": "#/properties/image/properties/repository",
+                    "type": "string",
+                    "title": "The repository schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "collabora/code"
+                    ]
+                },
+                "tag": {
+                    "$id": "#/properties/image/properties/tag",
+                    "type": "string",
+                    "title": "The tag schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "4.0.3.1"
+                    ]
+                },
+                "pullPolicy": {
+                    "$id": "#/properties/image/properties/pullPolicy",
+                    "type": "string",
+                    "title": "The pullPolicy schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "IfNotPresent"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "strategy": {
+            "$id": "#/properties/strategy",
+            "type": "string",
+            "title": "The strategy schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Recreate"
+            ]
+        },
+        "nameOverride": {
+            "$id": "#/properties/nameOverride",
+            "type": "string",
+            "title": "The nameOverride schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                ""
+            ]
+        },
+        "fullnameOverride": {
+            "$id": "#/properties/fullnameOverride",
+            "type": "string",
+            "title": "The fullnameOverride schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                ""
+            ]
+        },
+        "service": {
+            "$id": "#/properties/service",
+            "type": "object",
+            "title": "The service schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "type": "ClusterIP",
+                    "port": 9980
+                }
+            ],
+            "required": [
+                "type",
+                "port"
+            ],
+            "properties": {
+                "type": {
+                    "$id": "#/properties/service/properties/type",
+                    "type": "string",
+                    "title": "The type schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "ClusterIP"
+                    ]
+                },
+                "port": {
+                    "$id": "#/properties/service/properties/port",
+                    "type": "integer",
+                    "title": "The port schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        9980
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "ingress": {
+            "$id": "#/properties/ingress",
+            "type": "object",
+            "title": "The ingress schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "enabled": false,
+                    "annotations": {},
+                    "paths": [],
+                    "hosts": [],
+                    "tls": []
+                }
+            ],
+            "required": [
+                "enabled",
+                "annotations",
+                "paths",
+                "hosts",
+                "tls"
+            ],
+            "properties": {
+                "enabled": {
+                    "$id": "#/properties/ingress/properties/enabled",
+                    "type": "boolean",
+                    "title": "The enabled schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        false
+                    ]
+                },
+                "annotations": {
+                    "$id": "#/properties/ingress/properties/annotations",
+                    "type": "object",
+                    "title": "The annotations schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {}
+                    ],
+                    "required": [],
+                    "additionalProperties": true
+                },
+                "paths": {
+                    "$id": "#/properties/ingress/properties/paths",
+                    "type": "array",
+                    "title": "The paths schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        []
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/ingress/properties/paths/items"
+                    }
+                },
+                "hosts": {
+                    "$id": "#/properties/ingress/properties/hosts",
+                    "type": "array",
+                    "title": "The hosts schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        []
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/ingress/properties/hosts/items"
+                    }
+                },
+                "tls": {
+                    "$id": "#/properties/ingress/properties/tls",
+                    "type": "array",
+                    "title": "The tls schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        []
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/ingress/properties/tls/items"
+                    }
+                }
+            },
+            "additionalProperties": true
+        },
+        "collabora": {
+            "$id": "#/properties/collabora",
+            "type": "object",
+            "title": "The collabora schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "DONT_GEN_SSL_CERT": true,
+                    "domain": "nextcloud\\\\.domain",
+                    "extra_params": "--o:ssl.termination=true --o:ssl.enable=false",
+                    "server_name": "collabora\\.domain",
+                    "password": "examplepass",
+                    "username": "admin",
+                    "dictionaries": "de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru"
+                }
+            ],
+            "required": [
+                "DONT_GEN_SSL_CERT",
+                "domain",
+                "extra_params",
+                "server_name",
+                "password",
+                "username",
+                "dictionaries"
+            ],
+            "properties": {
+                "DONT_GEN_SSL_CERT": {
+                    "$id": "#/properties/collabora/properties/DONT_GEN_SSL_CERT",
+                    "type": "boolean",
+                    "title": "The DONT_GEN_SSL_CERT schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "domain": {
+                    "$id": "#/properties/collabora/properties/domain",
+                    "type": "string",
+                    "title": "The domain schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "nextcloud\\\\.domain"
+                    ]
+                },
+                "extra_params": {
+                    "$id": "#/properties/collabora/properties/extra_params",
+                    "type": "string",
+                    "title": "The extra_params schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "--o:ssl.termination=true --o:ssl.enable=false"
+                    ]
+                },
+                "server_name": {
+                    "$id": "#/properties/collabora/properties/server_name",
+                    "type": "string",
+                    "title": "The server_name schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "collabora\\.domain"
+                    ]
+                },
+                "password": {
+                    "$id": "#/properties/collabora/properties/password",
+                    "type": "string",
+                    "title": "The password schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "examplepass"
+                    ]
+                },
+                "username": {
+                    "$id": "#/properties/collabora/properties/username",
+                    "type": "string",
+                    "title": "The username schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "admin"
+                    ]
+                },
+                "dictionaries": {
+                    "$id": "#/properties/collabora/properties/dictionaries",
+                    "type": "string",
+                    "title": "The dictionaries schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "securitycontext": {
+            "$id": "#/properties/securitycontext",
+            "type": "object",
+            "title": "The securitycontext schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "allowPrivilegeEscalation": true,
+                    "capabilities": {
+                        "add": [
+                            "MKNOD"
+                        ]
+                    }
+                }
+            ],
+            "required": [
+                "allowPrivilegeEscalation",
+                "capabilities"
+            ],
+            "properties": {
+                "allowPrivilegeEscalation": {
+                    "$id": "#/properties/securitycontext/properties/allowPrivilegeEscalation",
+                    "type": "boolean",
+                    "title": "The allowPrivilegeEscalation schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "capabilities": {
+                    "$id": "#/properties/securitycontext/properties/capabilities",
+                    "type": "object",
+                    "title": "The capabilities schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "add": [
+                                "MKNOD"
+                            ]
+                        }
+                    ],
+                    "required": [
+                        "add"
+                    ],
+                    "properties": {
+                        "add": {
+                            "$id": "#/properties/securitycontext/properties/capabilities/properties/add",
+                            "type": "array",
+                            "title": "The add schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": [],
+                            "examples": [
+                                [
+                                    "MKNOD"
+                                ]
+                            ],
+                            "additionalItems": true,
+                            "items": {
+                                "$id": "#/properties/securitycontext/properties/capabilities/properties/add/items",
+                                "anyOf": [
+                                    {
+                                        "$id": "#/properties/securitycontext/properties/capabilities/properties/add/items/anyOf/0",
+                                        "type": "string",
+                                        "title": "The first anyOf schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "MKNOD"
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "additionalProperties": true
+                }
+            },
+            "additionalProperties": true
+        },
+        "resources": {
+            "$id": "#/properties/resources",
+            "type": "object",
+            "title": "The resources schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {}
+            ],
+            "required": [],
+            "additionalProperties": true
+        },
+        "nodeSelector": {
+            "$id": "#/properties/nodeSelector",
+            "type": "object",
+            "title": "The nodeSelector schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {}
+            ],
+            "required": [],
+            "additionalProperties": true
+        },
+        "tolerations": {
+            "$id": "#/properties/tolerations",
+            "type": "array",
+            "title": "The tolerations schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                []
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/tolerations/items"
+            }
+        },
+        "affinity": {
+            "$id": "#/properties/affinity",
+            "type": "object",
+            "title": "The affinity schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {}
+            ],
+            "required": [],
+            "additionalProperties": true
+        },
+        "livenessProbe": {
+            "$id": "#/properties/livenessProbe",
+            "type": "object",
+            "title": "The livenessProbe schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "enabled": true,
+                    "initialDelaySeconds": 30,
+                    "timeoutSeconds": 2,
+                    "periodSeconds": 10,
+                    "successThreshold": 1,
+                    "failureThreshold": 3,
+                    "scheme": "HTTP",
+                    "path": "/"
+                }
+            ],
+            "required": [
+                "enabled",
+                "initialDelaySeconds",
+                "timeoutSeconds",
+                "periodSeconds",
+                "successThreshold",
+                "failureThreshold",
+                "scheme",
+                "path"
+            ],
+            "properties": {
+                "enabled": {
+                    "$id": "#/properties/livenessProbe/properties/enabled",
+                    "type": "boolean",
+                    "title": "The enabled schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "initialDelaySeconds": {
+                    "$id": "#/properties/livenessProbe/properties/initialDelaySeconds",
+                    "type": "integer",
+                    "title": "The initialDelaySeconds schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        30
+                    ]
+                },
+                "timeoutSeconds": {
+                    "$id": "#/properties/livenessProbe/properties/timeoutSeconds",
+                    "type": "integer",
+                    "title": "The timeoutSeconds schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        2
+                    ]
+                },
+                "periodSeconds": {
+                    "$id": "#/properties/livenessProbe/properties/periodSeconds",
+                    "type": "integer",
+                    "title": "The periodSeconds schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        10
+                    ]
+                },
+                "successThreshold": {
+                    "$id": "#/properties/livenessProbe/properties/successThreshold",
+                    "type": "integer",
+                    "title": "The successThreshold schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                },
+                "failureThreshold": {
+                    "$id": "#/properties/livenessProbe/properties/failureThreshold",
+                    "type": "integer",
+                    "title": "The failureThreshold schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        3
+                    ]
+                },
+                "scheme": {
+                    "$id": "#/properties/livenessProbe/properties/scheme",
+                    "type": "string",
+                    "title": "The scheme schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "HTTP"
+                    ]
+                },
+                "path": {
+                    "$id": "#/properties/livenessProbe/properties/path",
+                    "type": "string",
+                    "title": "The path schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "/"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "readinessProbe": {
+            "$id": "#/properties/readinessProbe",
+            "type": "object",
+            "title": "The readinessProbe schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "enabled": true,
+                    "initialDelaySeconds": 30,
+                    "timeoutSeconds": 2,
+                    "periodSeconds": 10,
+                    "successThreshold": 1,
+                    "failureThreshold": 3,
+                    "scheme": "HTTP",
+                    "path": "/"
+                }
+            ],
+            "required": [
+                "enabled",
+                "initialDelaySeconds",
+                "timeoutSeconds",
+                "periodSeconds",
+                "successThreshold",
+                "failureThreshold",
+                "scheme",
+                "path"
+            ],
+            "properties": {
+                "enabled": {
+                    "$id": "#/properties/readinessProbe/properties/enabled",
+                    "type": "boolean",
+                    "title": "The enabled schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "initialDelaySeconds": {
+                    "$id": "#/properties/readinessProbe/properties/initialDelaySeconds",
+                    "type": "integer",
+                    "title": "The initialDelaySeconds schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        30
+                    ]
+                },
+                "timeoutSeconds": {
+                    "$id": "#/properties/readinessProbe/properties/timeoutSeconds",
+                    "type": "integer",
+                    "title": "The timeoutSeconds schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        2
+                    ]
+                },
+                "periodSeconds": {
+                    "$id": "#/properties/readinessProbe/properties/periodSeconds",
+                    "type": "integer",
+                    "title": "The periodSeconds schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        10
+                    ]
+                },
+                "successThreshold": {
+                    "$id": "#/properties/readinessProbe/properties/successThreshold",
+                    "type": "integer",
+                    "title": "The successThreshold schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        1
+                    ]
+                },
+                "failureThreshold": {
+                    "$id": "#/properties/readinessProbe/properties/failureThreshold",
+                    "type": "integer",
+                    "title": "The failureThreshold schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        3
+                    ]
+                },
+                "scheme": {
+                    "$id": "#/properties/readinessProbe/properties/scheme",
+                    "type": "string",
+                    "title": "The scheme schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "HTTP"
+                    ]
+                },
+                "path": {
+                    "$id": "#/properties/readinessProbe/properties/path",
+                    "type": "string",
+                    "title": "The path schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "/"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "additionalProperties": true
+}
