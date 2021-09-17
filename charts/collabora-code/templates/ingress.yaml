@@ -1,7 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "collabora-code.fullname" . -}}
 {{- $ingressPaths := .Values.ingress.paths -}}
-apiVersion: extensions/v1beta1
+apiVersion: extensions/v1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
@@ -33,8 +33,11 @@ spec:
   {{- range $ingressPaths }}
           - path: {{ . }}
             backend:
-              serviceName: {{ $fullName }}
-              servicePort: http
+              pathType: Prefix
+              service:
+                name: {{ $fullName }}
+                port:
+                  name: http
   {{- end }}
   {{- end }}
 {{- end }}
