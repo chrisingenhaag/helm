@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: collabora/code
-  tag: 4.0.3.1
+  tag: 6.4.10.10
   pullPolicy: IfNotPresent
 
 strategy: Recreate
