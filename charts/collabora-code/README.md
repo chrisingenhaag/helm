@@ -121,7 +121,7 @@ the replacement for this is
 ```yaml
 collabora:
   aliasgroups:
-    - domain: https://nextcloud\\.domain:443
+    - domain: https://nextcloud.domain:443
       aliases:
         - alias1\\.domain
         - alias2\\.domain
@@ -132,5 +132,7 @@ If you already defined a property `collabora.domain` with a value `foo\\.bar` th
 ```yaml
 collabora:
   aliasgroups:
-    - domain: https://foo\\.bar:443
+    - domain: https://foo.bar:443
 ```
+
+Notice that there is noe escaped dot here anymore and we have a protocol and a port. My tests were only successful with such a defintion.
