@@ -60,10 +60,11 @@ The following tables lists the configurable parameters of this chart and their d
 | `replicaCount`                                    | Number of provisioner instances to deployed                   | `1`                                                         |
 | `strategy`                                        | Specifies the strategy used to replace old Pods by new ones   | `Recreate`                                                  |
 | `image.repository`                                | Provisioner image                                             | `collabora/code`                                            |
-| `image.tag`                                       | Version of provisioner image                                  | `4.0.0.2`                                                   |
+| `image.tag`                                       | Version of provisioner image                                  | ``                                                   |
 | `image.pullPolicy`                                | Image pull policy                                             | `IfNotPresent`                                              |
 | `collabora.DONT_GEN_SSL_CERT`                     |                                                               | `true`                                                      |
-| `collabora.domain`                                | Double escaped WOPI host                                      | `wopihost\\.domain`                                         |
+| `collabora.domain`                                | Double escaped WOPI host (DEPRECATED)                         | `wopihost\\.domain`                                         |
+| `collabora.aliasgroups`                           | List of objects containing domain and list of aliases (see values.yaml for exmaple)    | `[]`                                         |
 | `collabora.extra_params`                          | List of params to use as env var                              | `--o:ssl.termination=true --o:ssl.enable=false`             |
 | `collabora.server_name`                           | Collabora server name (single escaped)                        | `collabora\.domain`                                         |
 | `collabora.password`                              | Collabora admin panel pass                                    | `examplepass`                                               |
@@ -101,3 +102,35 @@ The following tables lists the configurable parameters of this chart and their d
 ## Persistence
 
 There is no need for a persistent storage to run collabora code edition. All parameters in `/etc/loolwsd/loolwsd.xml` can be adjusted with using extra_params environment variable.
+
+## Changelog
+
+### Update to 2.3.0
+
+Beginning with Collabora CODE docker image version `21.11.3.6` the definition of domains has changed. The values property `collabora.domain` is now deprecated, but it´s supported for backwards compatibility.
+
+Instead of the old definition
+
+```yaml
+collabora:
+  domain: nextcloud\\.domain
+```
+
+the replacement for this is
+
+```yaml
+collabora:
+  aliasgroups:
+    - domain: https://nextcloud\\.domain:443
+      aliases:
+        - alias1\\.domain
+        - alias2\\.domain
+```
+
+If you already defined a property `collabora.domain` with a value `foo\\.bar` thie will be automatically appended to aliasgroups resulting in the following exampe:
+
+```yaml
+collabora:
+  aliasgroups:
+    - domain: https://foo\\.bar:443
+```

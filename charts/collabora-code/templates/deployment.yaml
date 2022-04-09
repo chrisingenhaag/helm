@@ -23,34 +23,12 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "collabora-code.fullname" . }}
           env:
-            - name: DONT_GEN_SSL_CERT
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "collabora-code.fullname" . }}
-                  key: DONT_GEN_SSL_CERT
-            - name: dictionaries
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "collabora-code.fullname" . }}
-                  key: dictionaries
-            - name: domain
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "collabora-code.fullname" . }}
-                  key: domain
-            - name: extra_params
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "collabora-code.fullname" . }}
-                  key: extra_params
-            - name: server_name
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "collabora-code.fullname" . }}
-                  key: server_name
             - name: username
               valueFrom:
                 secretKeyRef:

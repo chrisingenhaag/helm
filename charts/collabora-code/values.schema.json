@@ -10,7 +10,7 @@
             "replicaCount": 1,
             "image": {
                 "repository": "collabora/code",
-                "tag": "4.0.3.1",
+                "tag": "",
                 "pullPolicy": "IfNotPresent"
             },
             "strategy": "Recreate",
@@ -29,7 +29,11 @@
             },
             "collabora": {
                 "DONT_GEN_SSL_CERT": true,
-                "domain": "nextcloud\\\\.domain",
+                "aliasgroups": [
+                    {
+                        "domain": "https://nextcloud\\\\.domain:443"
+                    }
+                ],
                 "extra_params": "--o:ssl.termination=true --o:ssl.enable=false",
                 "server_name": "collabora\\.domain",
                 "password": "examplepass",
@@ -107,7 +111,7 @@
             "examples": [
                 {
                     "repository": "collabora/code",
-                    "tag": "4.0.3.1",
+                    "tag": "",
                     "pullPolicy": "IfNotPresent"
                 }
             ],
@@ -134,7 +138,7 @@
                     "description": "An explanation about the purpose of this instance.",
                     "default": "",
                     "examples": [
-                        "4.0.3.1"
+                        ""
                     ]
                 },
                 "pullPolicy": {
@@ -319,7 +323,11 @@
             "examples": [
                 {
                     "DONT_GEN_SSL_CERT": true,
-                    "domain": "nextcloud\\\\.domain",
+                    "aliasgroups": [
+                        {
+                            "domain": "https://nextcloud\\\\.domain:443"
+                        }
+                    ],
                     "extra_params": "--o:ssl.termination=true --o:ssl.enable=false",
                     "server_name": "collabora\\.domain",
                     "password": "examplepass",
@@ -329,7 +337,7 @@
             ],
             "required": [
                 "DONT_GEN_SSL_CERT",
-                "domain",
+                "aliasgroups",
                 "extra_params",
                 "server_name",
                 "password",
@@ -347,15 +355,53 @@
                         true
                     ]
                 },
-                "domain": {
-                    "$id": "#/properties/collabora/properties/domain",
-                    "type": "string",
-                    "title": "The domain schema",
+                "aliasgroups": {
+                    "$id": "#/properties/collabora/properties/aliasgroups",
+                    "type": "array",
+                    "title": "The aliasgroups schema",
                     "description": "An explanation about the purpose of this instance.",
-                    "default": "",
+                    "default": [],
                     "examples": [
-                        "nextcloud\\\\.domain"
-                    ]
+                        [
+                            {
+                                "domain": "https://nextcloud\\\\.domain:443"
+                            }
+                        ]
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/collabora/properties/aliasgroups/items",
+                        "anyOf": [
+                            {
+                                "$id": "#/properties/collabora/properties/aliasgroups/items/anyOf/0",
+                                "type": "object",
+                                "title": "The first anyOf schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": {},
+                                "examples": [
+                                    {
+                                        "domain": "https://nextcloud\\\\.domain:443"
+                                    }
+                                ],
+                                "required": [
+                                    "domain"
+                                ],
+                                "properties": {
+                                    "domain": {
+                                        "$id": "#/properties/collabora/properties/aliasgroups/items/anyOf/0/properties/domain",
+                                        "type": "string",
+                                        "title": "The domain schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "https://nextcloud\\\\.domain:443"
+                                        ]
+                                    }
+                                },
+                                "additionalProperties": true
+                            }
+                        ]
+                    }
                 },
                 "extra_params": {
                     "$id": "#/properties/collabora/properties/extra_params",
