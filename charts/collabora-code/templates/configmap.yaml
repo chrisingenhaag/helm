@@ -1,8 +1,3 @@
-{{ $fullAliasGroups := .Values.collabora.aliasgroups }}
-{{- if .Values.collabora.domain }}
-{{ $deprecatedDomain := dict "domain" (printf "https://%s:443" .Values.collabora.domain) }}
-{{ $fullAliasGroups := append $fullAliasGroups $deprecatedDomain }}
-{{- end }}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -11,16 +6,17 @@ metadata:
 data:
   DONT_GEN_SSL_CERT: "{{ .Values.collabora.DONT_GEN_SSL_CERT }}"
   dictionaries: {{ .Values.collabora.dictionaries }}
-  {{ $counter := 1 }}
-  {{- range $fullAliasGroups }}
-  {{- $alias := .domain }}
-  {{- if .aliases }}
-  {{- $alias := printf "%s,https://%s:443" $alias (join "|" .aliases ) -}}
-  aliasgroup{{ $counter }}: {{ $alias }}
+  {{- range $k,$v := .Values.collabora.aliasgroups }}
+  {{- $alias := $v.domain }}
+  {{- if $v.aliases }}
+  {{- $alias := printf "%s,https://%s:443" $alias (join "|" $v.aliases ) }}
+  aliasgroup{{ add $k 1 }}: {{ $alias }}
   {{- else }}
-  aliasgroup{{ $counter }}: {{ $alias }}
+  aliasgroup{{ add $k 1 }}: {{ $alias }}
   {{- end }}
-  {{- $counter := add $counter 1 }}
+  {{- end }}
+  {{- with .Values.collabora.domain }}
+  aliasgroup{{ add (len $.Values.collabora.aliasgroups) 1 }}: {{ printf "https://%s:443" (. | replace "\\" "") }}
   {{- end }}
   extra_params: {{ .Values.collabora.extra_params }}
   server_name: {{ .Values.collabora.server_name }}

@@ -29,12 +29,13 @@ ingress:
 collabora:
   DONT_GEN_SSL_CERT: true
   # deprecated (for backwards comp, this will be appended to aliasgroups)
-  # domain: nextcloud\\.domain
+  # domain: nextclouddeprecated\\.domain
   aliasgroups: []
-  # - domain: https://nextcloud\\.domain:443
-  #   aliases:
-  #     - alias1\\.domain
-  #     - alias2\\.domain
+  #  - domain: https://nextcloud.domain:443
+  #  - domain: https://nextcloud2.domain:443
+  #    aliases:
+  #      - alias1\\.domain
+  #      - alias2\\.domain
   extra_params: --o:ssl.termination=true --o:ssl.enable=false
   server_name: collabora\.domain
   password: examplepass
