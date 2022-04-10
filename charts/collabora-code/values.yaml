@@ -91,6 +91,13 @@ readinessProbe:
   scheme: HTTP
   path: /
 
+startupProbe:
+  enabled: true
+  failureThreshold: 30
+  periodSeconds: 5
+  scheme: HTTP
+  path: /
+
 autoscaling:
   enabled: false
   minReplicas: 1

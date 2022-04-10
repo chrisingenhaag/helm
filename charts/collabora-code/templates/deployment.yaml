@@ -39,12 +39,13 @@ spec:
                   key: password
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
-            failureThreshold: 3
             httpGet:
               path: {{ .Values.livenessProbe.path }}
               port: http
               scheme: {{ .Values.livenessProbe.scheme }}
+            {{- if not .Values.startupProbe.enabled }}
             initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            {{- end }}
             periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
             successThreshold: {{ .Values.livenessProbe.successThreshold }}
@@ -52,16 +53,26 @@ spec:
           {{- end }}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
-            failureThreshold: 3
             httpGet:
               path: {{ .Values.readinessProbe.path }}
               port: http
               scheme: {{ .Values.readinessProbe.scheme }}
+            {{- if not .Values.startupProbe.enabled }}
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            {{- end }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
             successThreshold: {{ .Values.readinessProbe.successThreshold }}
             failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+          {{- end }}
+          {{- if .Values.startupProbe.enabled }}
+          startupProbe:
+            httpGet:
+              path: {{ .Values.startupProbe.path }}
+              port: http
+              scheme: {{ .Values.startupProbe.scheme }}
+            failureThreshold: {{ .Values.startupProbe.failureThreshold }}
+            periodSeconds: {{ .Values.startupProbe.periodSeconds }}
           {{- end }}
           ports:
             - name: http
