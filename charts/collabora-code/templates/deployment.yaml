@@ -22,6 +22,7 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          serviceAccountName: {{ include "collabora-code.serviceAccountName" . }}
           envFrom:
             - configMapRef:
                 name: {{ include "collabora-code.fullname" . }}
