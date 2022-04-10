@@ -3,10 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "collabora-code.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "collabora-code.name" . }}
-    helm.sh/chart: {{ include "collabora-code.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- include "collabora-code.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
