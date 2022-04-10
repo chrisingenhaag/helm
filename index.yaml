@@ -3,6 +3,22 @@ entries:
   collabora-code:
   - apiVersion: v2
     appVersion: 21.11.3.6.1
+    created: "2022-04-10T12:05:08.426380487Z"
+    description: A Helm chart for Collabora Office - CODE-Edition
+    digest: 5673055c6c27ba443d1613cd7869b241cc525f009844a9eb027eb04475b911b3
+    home: https://chrisingenhaag.github.io/helm/
+    icon: https://avatars0.githubusercontent.com/u/22418908?s=200&v=4
+    maintainers:
+    - email: christian.ingenhaag@googlemail.com
+      name: Christian
+    name: collabora-code
+    sources:
+    - https://chrisingenhaag.github.io/helm/
+    urls:
+    - https://github.com/chrisingenhaag/helm/releases/download/collabora-code-2.4.1/collabora-code-2.4.1.tgz
+    version: 2.4.1
+  - apiVersion: v2
+    appVersion: 21.11.3.6.1
     created: "2022-04-10T11:16:48.851013308Z"
     description: A Helm chart for Collabora Office - CODE-Edition
     digest: 5f1dec1a08a68134442b990713fe91e9d52411e31a4e48a27fabaee25e589a04
@@ -257,4 +273,4 @@ entries:
     urls:
     - https://chrisingenhaag.github.io/helm/deprecated-releases/collabora-code-1.0.0.tgz
     version: 1.0.0
-generated: "2022-04-10T11:16:48.851140009Z"
+generated: "2022-04-10T12:05:08.426522487Z"
