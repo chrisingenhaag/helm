@@ -30,3 +30,35 @@ Create chart name and version as used by the chart label.
 {{- define "collabora-code.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+
+{{/*
+Common labels
+*/}}
+{{- define "collabora-code.labels" -}}
+helm.sh/chart: {{ include "collabora-code.chart" . }}
+{{ include "collabora-code.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "collabora-code.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "collabora-code.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "collabora-code.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "collabora-code.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}
