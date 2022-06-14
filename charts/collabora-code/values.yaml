@@ -48,6 +48,11 @@ collabora:
   #      - alias2\\.domain
   extra_params: --o:ssl.termination=true --o:ssl.enable=false
   server_name: collabora\.domain
+  existingSecret:
+    enabled: false
+    secretName: ""
+    usernameKey: "username"
+    passwordKey: "password"
   password: examplepass
   username: admin
   dictionaries: de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru
