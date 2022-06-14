@@ -55,48 +55,53 @@ $ helm install --name my-release -f values.yaml stable/collabora
 
 The following tables lists the configurable parameters of this chart and their default values.
 
-| Parameter                                         | Description                                                   | Default                                                     |
-| ------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------- |
-| `replicaCount`                                    | Number of provisioner instances to deployed                   | `1`                                                         |
-| `strategy`                                        | Specifies the strategy used to replace old Pods by new ones   | `Recreate`                                                  |
-| `image.repository`                                | Provisioner image                                             | `collabora/code`                                            |
-| `image.tag`                                       | Version of provisioner image                                  | ``                                                   |
-| `image.pullPolicy`                                | Image pull policy                                             | `IfNotPresent`                                              |
-| `collabora.DONT_GEN_SSL_CERT`                     |                                                               | `true`                                                      |
-| `collabora.domain`                                | Double escaped WOPI host (DEPRECATED)                         | `wopihost\\.domain`                                         |
-| `collabora.aliasgroups`                           | List of objects containing domain and list of aliases (see values.yaml for exmaple)    | `[]`                                         |
-| `collabora.extra_params`                          | List of params to use as env var                              | `--o:ssl.termination=true --o:ssl.enable=false`             |
-| `collabora.server_name`                           | Collabora server name (single escaped)                        | `collabora\.domain`                                         |
-| `collabora.password`                              | Collabora admin panel pass                                    | `examplepass`                                               |
-| `collabora.username`                              | Collabora admin panel user                                    | `admin`                                                     |
-| `collabora.dictionaries`                          | Collabora enabled dictionaries                                | `de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru`        |
-| `ingress.enabled`                                 |                                                               | `false`                                                     |
-| `ingress.annotations`                             |                                                               | `{}`                                                        |
-| `ingress.paths`                                   |                                                               | `[]`                                                        |
-| `ingress.hosts`                                   |                                                               | `[]`                                                        |
-| `ingress.tls`                                     |                                                               | `[]`                                                        |
-| `livenessProbe.enabled`                           | Turn on and off liveness probe                                | `true`                                                      |
-| `livenessProbe.initialDelaySeconds`               | Delay before liveness probe is initiated                      | `30`                                                        |
-| `livenessProbe.periodSeconds`                     | How often to perform the probe                                | `10`                                                        |
-| `livenessProbe.timeoutSeconds`                    | When the probe times out                                      | `2`                                                         |
-| `livenessProbe.successThreshold`                  | Minimum consecutive successes for the probe                   | `1`                                                         |
-| `livenessProbe.failureThreshold`                  | Minimum consecutive failures for the probe                    | `3`                                                         |
-| `livenessProbe.scheme`                            | Scheme for the probe                                          | `HTTP`                                                      |
-| `livenessProbe.path`                              | Path for the probe                                            | `/`                                                         |
-| `readinessProbe.enabled`                          | Turn on and off readiness probe                               | `true`                                                      |
-| `readinessProbe.initialDelaySeconds`              | Delay before readiness probe is initiated                     | `30`                                                        |
-| `readinessProbe.periodSeconds`                    | How often to perform the probe                                | `10`                                                        |
-| `readinessProbe.timeoutSeconds`                   | When the probe times out                                      | `2`                                                         |
-| `readinessProbe.successThreshold`                 | Minimum consecutive successes for the probe                   | `1`                                                         |
-| `readinessProbe.failureThreshold`                 | Minimum consecutive failures for the probe                    | `3`                                                         |
-| `readinessProbe.scheme`                           | Scheme for the probe                                          | `HTTP`                                                      |
-| `readinessProbe.path`                             | Path for the probe                                            | `/`                                                         |
-| `securityContext.allowPrivilegeEscalation`        | Create & use Pod Security Policy resources                    | `true`                                                      |
-| `securitycontext.capabilities.add`                | Collabora needs to run with MKNOD as capabibility             | `[MKNOD]`                                                   |
-| `resources`                                       | Resources required (e.g. CPU, memory)                         | `{}`                                                        |
-| `nodeSelector`                                    | Node labels for pod assignment                                | `{}`                                                        |
-| `affinity`                                        | Affinity settings                                             | `{}`                                                        |
-| `tolerations`                                     | List of node taints to tolerate                               | `[]`                                                        |
+| Parameter                                  | Description                                                                                         | Default                                              |
+|--------------------------------------------|-----------------------------------------------------------------------------------------------------|------------------------------------------------------|
+| `replicaCount`                             | Number of provisioner instances to deployed                                                         | `1`                                                  |
+| `strategy`                                 | Specifies the strategy used to replace old Pods by new ones                                         | `Recreate`                                           |
+| `image.repository`                         | Provisioner image                                                                                   | `collabora/code`                                     |
+| `image.tag`                                | Version of provisioner image                                                                        | ``                                                   |
+| `image.pullPolicy`                         | Image pull policy                                                                                   | `IfNotPresent`                                       |
+| `collabora.DONT_GEN_SSL_CERT`              |                                                                                                     | `true`                                               |
+| `collabora.domain`                         | Double escaped WOPI host (DEPRECATED)                                                               | `wopihost\\.domain`                                  |
+| `collabora.aliasgroups`                    | List of objects containing domain and list of aliases (see values.yaml for exmaple)                 | `[]`                                                 |
+| `collabora.extra_params`                   | List of params to use as env var                                                                    | `--o:ssl.termination=true --o:ssl.enable=false`      |
+| `collabora.server_name`                    | Collabora server name (single escaped)                                                              | `collabora\.domain`                                  |
+| `collabora.existingSecret`                 | An existing secret containing the collabora admin panel pass.                                       | {}                                                   |
+| `collabora.existingSecret.enabled`         | Enable the extisting secret. If enabled, *collabora.password* and *collabora.username* are ignored. | `false`                                              |
+| `collabora.existingSecret.secretName`      | Name of the existing secret.                                                                        | ``                                                   |
+| `collabora.existingSecret.usernameKey`     | Key within the secret that contains the username                                                    | `username`                                           |
+| `collabora.existingSecret.passwordKey`     | Key within the secret that contains the password                                                    | `password`                                           |
+| `collabora.password`                       | Collabora admin panel pass                                                                          | `examplepass`                                        |
+| `collabora.username`                       | Collabora admin panel user                                                                          | `admin`                                              |
+| `collabora.dictionaries`                   | Collabora enabled dictionaries                                                                      | `de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru` |
+| `ingress.enabled`                          |                                                                                                     | `false`                                              |
+| `ingress.annotations`                      |                                                                                                     | `{}`                                                 |
+| `ingress.paths`                            |                                                                                                     | `[]`                                                 |
+| `ingress.hosts`                            |                                                                                                     | `[]`                                                 |
+| `ingress.tls`                              |                                                                                                     | `[]`                                                 |
+| `livenessProbe.enabled`                    | Turn on and off liveness probe                                                                      | `true`                                               |
+| `livenessProbe.initialDelaySeconds`        | Delay before liveness probe is initiated                                                            | `30`                                                 |
+| `livenessProbe.periodSeconds`              | How often to perform the probe                                                                      | `10`                                                 |
+| `livenessProbe.timeoutSeconds`             | When the probe times out                                                                            | `2`                                                  |
+| `livenessProbe.successThreshold`           | Minimum consecutive successes for the probe                                                         | `1`                                                  |
+| `livenessProbe.failureThreshold`           | Minimum consecutive failures for the probe                                                          | `3`                                                  |
+| `livenessProbe.scheme`                     | Scheme for the probe                                                                                | `HTTP`                                               |
+| `livenessProbe.path`                       | Path for the probe                                                                                  | `/`                                                  |
+| `readinessProbe.enabled`                   | Turn on and off readiness probe                                                                     | `true`                                               |
+| `readinessProbe.initialDelaySeconds`       | Delay before readiness probe is initiated                                                           | `30`                                                 |
+| `readinessProbe.periodSeconds`             | How often to perform the probe                                                                      | `10`                                                 |
+| `readinessProbe.timeoutSeconds`            | When the probe times out                                                                            | `2`                                                  |
+| `readinessProbe.successThreshold`          | Minimum consecutive successes for the probe                                                         | `1`                                                  |
+| `readinessProbe.failureThreshold`          | Minimum consecutive failures for the probe                                                          | `3`                                                  |
+| `readinessProbe.scheme`                    | Scheme for the probe                                                                                | `HTTP`                                               |
+| `readinessProbe.path`                      | Path for the probe                                                                                  | `/`                                                  |
+| `securityContext.allowPrivilegeEscalation` | Create & use Pod Security Policy resources                                                          | `true`                                               |
+| `securitycontext.capabilities.add`         | Collabora needs to run with MKNOD as capabibility                                                   | `[MKNOD]`                                            |
+| `resources`                                | Resources required (e.g. CPU, memory)                                                               | `{}`                                                 |
+| `nodeSelector`                             | Node labels for pod assignment                                                                      | `{}`                                                 |
+| `affinity`                                 | Affinity settings                                                                                   | `{}`                                                 |
+| `tolerations`                              | List of node taints to tolerate                                                                     | `[]`                                                 |
 
 
 ## Persistence

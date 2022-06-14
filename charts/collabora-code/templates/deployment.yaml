@@ -28,13 +28,23 @@ spec:
             - name: username
               valueFrom:
                 secretKeyRef:
+                  {{- if (.Values.collabora.existingSecret).enabled }}
+                  name: {{ .Values.collabora.existingSecret.secretName | quote }}
+                  key: {{ .Values.collabora.existingSecret.usernameKey | quote }}
+                  {{- else }}
                   name: {{ include "collabora-code.fullname" . }}
                   key: username
+                  {{- end }}
             - name: password
               valueFrom:
                 secretKeyRef:
+                  {{- if (.Values.collabora.existingSecret).enabled }}
+                  name: {{ .Values.collabora.existingSecret.secretName | quote }}
+                  key: {{ .Values.collabora.existingSecret.passwordKey | quote }}
+                  {{- else }}
                   name: {{ include "collabora-code.fullname" . }}
                   key: password
+                  {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
