@@ -11,7 +11,7 @@ data:
   {{- range $k,$v := .Values.collabora.aliasgroups }}
   {{- $alias := $v.domain }}
   {{- if $v.aliases }}
-  {{- $alias := printf "%s,https://%s:443" $alias (join "|" $v.aliases ) }}
+  {{- $alias := printf "%s|https://%s:443" $alias (join ":443|https://" $v.aliases ) }}
   aliasgroup{{ add $k 1 }}: {{ $alias }}
   {{- else }}
   aliasgroup{{ add $k 1 }}: {{ $alias }}
