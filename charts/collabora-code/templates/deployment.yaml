@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         {{- include "collabora-code.selectorLabels" . | nindent 8 }}
+        confighash: config-{{ .Values.collabora | toYaml | sha256sum | trunc 32 }}
     spec:
       serviceAccountName: {{ include "collabora-code.serviceAccountName" . }}
       containers:
