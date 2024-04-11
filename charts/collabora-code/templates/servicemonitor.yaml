@@ -1,0 +1,54 @@
+{{- if .Values.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "collabora-code.fullname" . }}
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+    {{- include "collabora-code.labels" . | nindent 4 }}
+spec:
+  {{- if .Values.serviceMonitor.jobLabel }}
+  jobLabel: {{ .Values.serviceMonitor.jobLabel }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "collabora-code.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: http
+      path: "/cool/getMetrics"
+      basicAuth:
+        username:
+          {{- if .Values.collabora.existingSecret.enabled }}
+          name: "{{ .Values.collabora.existingSecret.secretName }}"
+          key: {{ .Values.collabora.existingSecret.usernameKey }}
+          {{- else }}
+          name: "{{ include "collabora-code.fullname" . }}"
+          key: username
+          {{- end }}
+        password:
+          {{- if .Values.collabora.existingSecret.enabled }}
+          name: "{{ .Values.collabora.existingSecret.secretName }}"
+          key: {{ .Values.collabora.existingSecret.passwordKey }}
+          {{- else }}
+          name: "{{ include "collabora-code.fullname" . }}"
+          key: password
+          {{- end }}
+      {{- if .Values.serviceMonitor.interval }}
+      interval: {{ .Values.serviceMonitor.interval }}
+      {{- end }}
+      {{- if .Values.serviceMonitor.scrapeTimeout }}
+      scrapeTimeout: {{ .Values.serviceMonitor.scrapeTimeout }}
+      {{- end }}
+      {{- if .Values.serviceMonitor.relabelings }}
+      relabelings: {{- include "common.tplvalues.render" ( dict "value" .Values.serviceMonitor.relabelings "context" $) | nindent 8 }}
+      {{- end }}
+      {{- if .Values.serviceMonitor.metricRelabelings }}
+      metricRelabelings: {{- include "common.tplvalues.render" ( dict "value" .Values.serviceMonitor.metricRelabelings "context" $) | nindent 8 }}
+      {{- end }}
+      {{- if .Values.serviceMonitor.honorLabels }}
+      honorLabels: {{ .Values.serviceMonitor.honorLabels }}
+      {{- end }}
+  namespaceSelector:
+    matchNames:
+      - "{{ .Release.Namespace }}"
+{{- end }}

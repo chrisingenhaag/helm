@@ -110,3 +110,16 @@ autoscaling:
   maxReplicas: 10
   # targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
+
+
+serviceMonitor:
+  enabled: false
+  namespace: ""
+  interval: 30s
+  scrapeTimeout: ""
+  relabelings: []
+  metricRelabelings: []
+  labels: {}
+  selector: {}
+  honorLabels: false
+  jobLabel: ""
