@@ -110,6 +110,12 @@ There is no need for a persistent storage to run collabora code edition. All par
 
 ## Changelog
 
+### Update to 2.6.0
+
+* ability to create serviceMonitors for prometheus
+* updated collabora-code image version to `23.05.10.1.1`
+* various chart improvements since 2.3.0 see [2.3.0...2.6.0](https://github.com/chrisingenhaag/helm/compare/collabora-code-2.3.0...collabora-code-2.6.0)
+
 ### Update to 2.3.0
 
 Beginning with Collabora CODE docker image version `21.11.3.6` the definition of domains has changed. The values property `collabora.domain` is now deprecated, but it´s supported for backwards compatibility.
